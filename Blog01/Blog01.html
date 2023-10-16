@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="center">
+        <h1>var, let, and const – What's the Difference?</h1>
+        <img src="./javascript_logo_icon.png" alt="js in text">
+    </div>
+    <div class="paragraph">
+        <p>In <strong>(ES6)</strong> the addition of <code>let</code> and <code>const</code>, which can be used for
+            variable declaration. The question is, what makes them different from <code>var</code> which we've been
+            using? If you are
+            still not clear about this, then this article is for you.</p>
+        <p>The difference in <code>var</code>, <code>let</code> and <code>const</code> lies in their scope,
+            hoisting, and whether the variable can be re-declared/updated . </p>
+        <li>var declarations are globally scoped or function scoped while let and const are block scoped.</li>
+        <li>var variables can be updated and re-declared within its scope; let variables can be updated but not
+            re-declared; const variables can neither be updated nor re-declared</li>
+        <li>They are all hoisted to the top of their scope. But while var variables are initialized with undefined, let
+            and const variables are not initialized.</li>
+        <li>While var and let can be declared without being initialized, const must be initialized during declaration.
+        </li>
+        <br>
+        <h2>Var</h2>
+        <li>Scope of var variables can be global scope or function scope</li>
+        <li>var variables can be re-declared and updated</li>
+        <li>var variables are hoisted to the top of their scope and initialized with a value of undefined.</li><br>
+
+        <div>
+            <h2>Example :- global scope and functional scope</h2>
+            <pre>
+                <code>
+                    var hi = "say hi";  //Example global scope
+                    function newFunction() 
+                    {
+                        console.log(hi);  // return: "say hi"
+                    }
+                    newFunction(); 
+             
+                   
+                    function newFunction2()    //Example functional scope
+                    {
+                        var hello = "say hello and Bonjur"; 
+                    }
+                    console.log(hello);  // error: hi is not defined
+                </code>
+              </pre>
+              <h2>Example :- var not have block scope</h2>
+            <pre>
+                <code>
+                    var greeter = "hey hi";
+                    var times = 4;
+                
+                    if (times > 3) {
+                        var greeter = "say Hello instead"; 
+                    }
+                    console.log(greeter) // "say Hello instead"
+                </code>
+              </pre>
+
+            <h2> Example :- re-declared and update</h2>
+            <pre>
+                <code>
+                    var message = "hey hi i am Akash";
+                    var message = "message is deleted"; // re-declared
+                        console.log(message) 
+                    
+                    var hi = "hey hi";
+                        hi = "say Hello or Bonjur"; // update
+                        console.log(hi)
+                </code>
+              </pre>
+
+            <h2> Example :- Hoisting of var</h2>
+            <p>Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of
+                their scope before code execution. This means that if we do this:</p>
+            <pre>
+                <code>
+                console.log (hi); // return: undefined
+                var hi = "say hello";
+                </code>
+              </pre>
+        </div>
+        <h2>Let</h2>
+        <li>Scope of let variables is global, functional and Block scope</li>
+        <li>let variables can be updated but not re-declared</li>
+        <br>
+        <div>
+            <h2>Example :- global scope and functional scope</h2>
+            <pre>
+                <code>
+                    let hi = "say hi";  //Example global scope
+                    function newFunction() 
+                    {
+                        console.log(hi); // return: "say hi"
+                    }
+                    newFunction(); 
+             
+                   
+                    function newFunction2()    //Example functional scope
+                    {
+                        let hello = "say hello and Bonjur"; 
+                    }
+                    console.log(hello);  // error: hi is not defined
+                </code>
+              </pre>
+
+              <h2>Example :- let have block{} scope</h2>
+            <pre>
+                <code>
+                    let greeting = "say Hi";
+                    let times = 4;
+                 
+                    if (times > 3) {
+                         let hello = "say Hello instead";
+                         console.log(hello);// return: "say Hello instead"
+                     }
+                    console.log(hello) // error: hello is not defined
+                </code>
+              </pre>
+
+            <h2> Example :- re-declared and update</h2>
+            <pre>
+                <code>
+                    let message = "hey hi i am Akash";
+                    let message = "message is deleted"; // re-declared
+                        console.log(message)  // error: message has already been declared
+                    
+                    let hi = "hey hi";
+                        hi = "say Hello or Bonjur"; // update
+                        console.log(hi) //return: "say Hello or Bonjur"
+                </code>
+              </pre>
+            <h2> Example :- Hoisting </h2>
+            <pre>
+                <code>
+                console.log (hi); // error: ReferenceError
+                let hi = "say hello"
+                </code>
+              </pre>
+        </div>
+        <h2>Const</h2>
+        <li>Scope of Const variables is global, functional and Block scope</li>
+        <li>const variables cannot re-declared and updated </li>
+        <br>
+        <div>
+            <h2>Example :- global scope and functional scope</h2>
+            <pre>
+                <code>
+                    const hi = "say hi";  //Example global scope
+                    function newFunction() 
+                    {
+                        console.log(hi); // return: "say hi"
+                    }
+                    newFunction(); 
+             
+                   
+                    function newFunction2()    //Example functional scope
+                    {
+                        const hello = "say hello and Bonjur"; 
+                    }
+                    console.log(hello);  // error: hi is not defined
+                </code>
+              </pre>
+            <h2> Example :- const cannot re-declared and update</h2>
+            <pre>
+                <code>
+                    const message = "hey hi i am Akash";
+                    const message = "message is deleted"; // re-declared
+                    console.log(message)  // error: message has already been declared
+                    
+                    const hi = "hey hi";
+                    hi = "say Hello or Bonjur"; // update
+                    console.log(hi) //error: Assignment to constant variable
+                </code>
+              </pre>
+            <h2> Example :- Hoisting </h2>
+            <pre>
+                <code>
+                console.log (hi); // error: ReferenceError
+                let hi = "say hello"
+                </code>
+              </pre>
+        </div>
+    </div>
+</body>
+
+</html>

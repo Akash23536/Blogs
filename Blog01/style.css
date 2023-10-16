@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
+    font-family: 'Baloo Bhai 2', sans-serif;
+}
+
+.center {
+    text-align: center;
+
+}
+
+.paragraph {
+    margin-left: 15%;
+    margin-right: 15%;
+    font-size: larger;
+}
+
+pre code {
+    color: white;
+    background-color: rgb(44, 43, 43);
+    border: 1px solid #999;
+    display: block;
+    padding: 10px;
+  }
