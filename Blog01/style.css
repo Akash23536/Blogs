@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500&display=swap');
 
 * {
-    margin: 0;
+    margin: auto;
     padding: 0;
     background-color: white;
     color: black;
@@ -21,8 +21,10 @@
 
 pre code {
     color: white;
-    background-color: rgb(44, 43, 43);
+    background-color: rgb(36, 34, 34);
     border: 1px solid #999;
     display: block;
-    padding: 10px;
+    padding: 5px;
   }
+
+ 
