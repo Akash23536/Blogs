@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="blog about how to create web app that change background color on click" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Counter</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div class="center">
+    <time> October 19, 2023 | Akash Bhadana</time>
+    <h1>How to build a Background color Switcher app using JavaScript and React.js</h1>
+    <img src="./javascript.jpg" alt="js dom" height="100Px" width="150px"
+      style="border-radius: 5%; margin-right: 20%" />
+    <img src="./reacth.png" alt="react hook" height="100Px" width="150px" />
+  </div>
+  <div class="paragraph">
+    <p>
+      <strong>Background color Switcher App:</strong> The App will have an colored button . when click event is done on
+      it .The background color changes as same as of color
+    </p>
+    <embed style="
+          margin-left: 10%;
+          margin-top: 3%;
+          margin-bottom: 3%;
+        " src="./bg-color.html" height="300Px" width="800px" />
+    <br />
+    <h2>Background color Switcher App using Dom Manipulation:-</h2>
+    <div>
+      <pre>
+                <code>
+             // Html code:
+
+                  &lt;h1&gt; Background Color Switcher &lt;/h1&gt;
+                  &lt;span id = "grey"&gt; grey &lt;/span&gt;
+                  &lt;span id = "green"&gt; green &lt;/span&gt;
+                  &lt;span id = "blue"&gt; blue &lt;/span&gt;
+                  &lt;span id = "yellow"&gt; yellow &lt;/span&gt;
+
+             // JavaScript code:
+
+             const grey = (document.getElementById("grey").onclick = function () {
+              document.body.style.backgroundColor = "grey";
+            });
+            const green = (document.getElementById("green").onclick = () => {
+              document.body.style.backgroundColor = "green";
+            });
+            const blue = (document.getElementById("blue").onclick = function () {
+              document.body.style.backgroundColor = "blue";
+            });
+            const yellow = (document.getElementById("yellow").onclick = () => {
+              document.body.style.backgroundColor = "yellow";
+                </code>
+              </pre>
+
+      <h2>Background color Switcher App using react useState hook</h2>
+      <pre>
+                <code>
+                  import { useState } from 'react';
+
+                  function App() {
+                    const [color, setColor] = useState("black");
+                    function bgYellow() {setColor("yellow");}
+                    return (
+                      &lt;div style={{ backgroundColor: color }}&gt;
+                      &lt;h1&gt; Background Color Switcher &lt;/h1&gt;
+                      &lt;span onClick={()=>setColor("red")}&gt; red &lt;/span&gt;
+                      &lt;span onClick={()=>setColor("green")}&gt; green &lt;/span&gt;
+                      &lt;span onClick={()=>setColor("blue")}&gt; blue &lt;/span&gt;
+                      &lt;span onClick={bgYellow}&gt; yellow &lt;/span&gt;
+                      &lt;/div&gt;
+                    );
+                  }
+                  export default App;
+                </code>
+              </pre>
+    </div>
+  </div>
+</body>
+
+</html>
