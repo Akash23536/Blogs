@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+    <style>
+      * {
+        color: aqua;
+      }
+      #inc {
+        margin-left: 2%;
+        margin-right: 2%;
+        background-color: blue;
+        color: aliceblue;
+      }
+      #dec {
+        margin-left: 2%;
+        margin-right: 2%;
+        background-color: red;
+        color: aliceblue;
+      }
+      #reset {
+        margin-top: 2%;
+        margin-left: 2%;
+        margin-right: 2%;
+        background-color: rgb(231, 223, 223);
+        color: black;
+      }
+      div{
+        text-align: center;
+        
+        background-color: rgb(73, 71, 71);
+        padding: 10%;
+        margin-top: 10;
+        border-radius: 3%;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+    <h1>Counter</h1>
+    <h1 id="counter">0</h1>
+    <button id="inc">increment</button>
+    <button id="dec">decrement</button>
+    <button id="reset">reset</button>
+  </div>
+
+    <script>
+      let value = 0;
+      const count = document.getElementById("counter");
+      const inc = document.getElementById("inc");
+      const dec = document.getElementById("dec");
+      const reset = document.getElementById("reset");
+      inc.onclick = function () {
+        value++;
+        count.innerHTML = `${value}`;
+      };
+      dec.onclick = () => {
+        value--;
+        count.innerHTML = `${value}`;
+      };
+      reset.onclick = function () {
+        value = 0;
+        count.innerHTML = `${value}`;
+      };
+    </script>
+  </body>
+</html>
