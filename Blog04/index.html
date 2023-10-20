@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="blog about how to create a web app that changes background color on click"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>digital clock</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+
+      .center {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .center img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .paragraph {
+        padding: 20px;
+        background-color: white;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+        font-size: 16px;
+        text-align: center
+      }
+
+      pre {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: monospace;
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-top: 20px;
+        text-align: center; /* Center align the headings */
+      }
+
+      .paragraph div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .paragraph span {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      embed {
+        margin-top: 3%;
+        margin-bottom: 3%;
+        width: 100%;
+        max-width: 800px;
+        display: block; /* Make the embed responsive */
+        margin: 0 auto; /* Center align the embed */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="center">
+      <time> October 20, 2023 | Akash Bhadana</time>
+      <h1>How to build a Digital Clock using JavaScript and React.js</h1>
+      <img
+        src="./javascript_logo_icon.png"
+        alt="js dom"
+        height="100Px"
+        width="150px"
+        style="border-radius: 5%; margin-right: 20%"
+      />
+      <img src="./reacth.png" alt="react hook" height="100Px" width="150px" />
+    </div>
+    <div class="paragraph">
+      <p>
+        <strong>Digital Clock App:</strong> The App will display the local
+        current time in 12 hours format
+      </p>
+      <embed
+        src="./digital clock.html"
+        height="300Px"
+        width="800px"
+      />
+      <br />
+      <h2>Digital Clock App using Dom Manipulation:-</h2>
+
+      <pre>
+     <code>
+// Html code:
+
+&lt;div class="center"&gt;
+&lt;div id="banner"&gt;&lt;span&gt;Your local time&lt;/span&gt;&lt;/div&gt;
+&lt;div id="clock"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+// JavaScript code:
+
+let time = document.getElementById('clock');
+setInterval(function () {
+let date = new Date();
+time.innerHTML = date.toLocaleTimeString();
+}, 1000); // 10^-3 second delay
+  </code>
+  </pre>
+      <h2>Digital Clock App using react useState hook and setInterval:-</h2>
+      <pre>
+  <code>
+  import React, { useState } from "react";
+  import "./App.css";
+
+  const App = () => {
+  let currentTime = new Date().toLocaleTimeString();
+  const [time, setTime] = useState(currentTime);
+  function updateTime()
+  {
+  let currentTime = new Date().toLocaleTimeString();
+  setTime(currentTime);
+  }
+  setInterval(updateTime, 1000);
+
+  return (
+  &lt;div class="center"&gt;
+  &lt;div id="banner"&gt;&lt;span&gt;Your local time&lt;/span&gt;&lt;/div&gt;
+  &lt;div id="clock"&gt; {time} &lt;/div&gt;
+  &lt;/div&gt;
+  );
+  }
+  export default App;
+  </code>
+  </pre>
+  </div>
+  </body>
+</html>
