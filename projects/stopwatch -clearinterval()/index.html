@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock</title>
+    <style>
+      body {
+        background-color: #212121;
+        color: #fff;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      #clock {
+        font-size: 40px;
+        background-color: orange;
+        padding: 20px 50px;
+        margin-top: 10px;
+        border-radius: 10px;
+      }
+      button {
+        font-size: 18px;
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+        cursor: pointer;
+      }
+      #banner{
+        font-size: larger;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="banner"><span>Stop Watch</span></div>
+    <div id="clock">0</div>
+    <button id="start">Start</button>
+    <button id="pause">Pause</button>
+    <button id="reset">Reset</button>
+    <script>
+      const display = document.getElementById("clock");
+      const startButton = document.getElementById("start");
+      const pauseButton = document.getElementById("pause");
+      const resetButton = document.getElementById("reset");
+      let interval;
+      let temp = 0;
+
+      function updateClock() {
+        temp++;
+        display.textContent = temp;
+      }
+
+      startButton.addEventListener("click", function () {
+        if (!interval) {
+          interval = setInterval(updateClock, 1000);
+        }
+      });
+
+      pauseButton.addEventListener("click", function () {
+        clearInterval(interval);
+        interval = null;
+      });
+
+      resetButton.addEventListener("click", function () {
+        clearInterval(interval);
+        interval = null;
+        temp = 0;
+        display.textContent = temp;
+      });
+    </script>
+  </body>
+</html>

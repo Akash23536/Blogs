@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="blog code in javascript and react"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stopwatch</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+
+      .center {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .center img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .paragraph {
+        padding: 20px;
+        background-color: white;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+        font-size: 16px;
+        text-align: center
+      }
+
+      pre {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: monospace;
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-top: 20px;
+        text-align: center; /* Center align the headings */
+      }
+
+      .paragraph div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .paragraph span {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      embed {
+        margin-top: 3%;
+        margin-bottom: 3%;
+        width: 100%;
+        max-width: 800px;
+        display: block; /* Make the embed responsive */
+        margin: 0 auto; /* Center align the embed */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="center">
+      <time> October 21, 2023 | Akash Bhadana</time>
+      <h1>How to build a stopwatch using JavaScript and React.js</h1>
+      <img
+        src="./stopwatch 2.avif"
+        alt="js dom"
+        height="100Px"
+        width="150px"
+       
+      />
+      <img
+        src="./javascript_logo_icon.png"
+        alt="js dom"
+        height="100Px"
+        width="150px"
+        
+      />
+      <img src="./reacth.png" alt="react hook" height="100Px" width="150px" />
+    </div>
+    <div class="paragraph">
+      <p>
+        <strong>Stopwatch App:</strong> The App will display the seconds in numbers and buttons to start, pause ,reset the interval
+      </p>
+      <embed
+        src="./stop watch.html"
+        height="350Px"
+        width="300px"
+      />
+      <br />
+      <h2>Stopwatch App App using Dom Manipulation:-</h2>
+
+      <pre>
+     <code>
+// Html code:
+
+&lt;div id=&quot;banner&quot;&gt;&lt;span&gt;StopWatch&lt;/span&gt;&lt;/div&gt;
+&lt;div id=&quot;clock&quot;&gt;0&lt;/div&gt;
+&lt;button id=&quot;start&quot;&gt;Start&lt;/button&gt;
+&lt;button id=&quot;pause&quot;&gt;Pause&lt;/button&gt;
+&lt;button id=&quot;reset&quot;&gt;Reset&lt;/button&gt;
+
+// JavaScript code:
+
+const display = document.getElementById("clock");
+const startButton = document.getElementById("start");
+const pauseButton = document.getElementById("pause");
+const resetButton = document.getElementById("reset");
+let interval;
+let temp = 0;
+
+function updateClock() {
+  temp++;
+  display.textContent = temp;
+}
+
+startButton.addEventListener("click", function () {
+  if (!interval) {
+    interval = setInterval(updateClock, 1000);
+  }
+});
+
+pauseButton.addEventListener("click", ()=> {
+  clearInterval(interval);
+  interval = null;
+});
+
+resetButton.addEventListener("click", function () {
+  clearInterval(interval);
+  interval = null;
+  temp = 0;
+  display.textContent = temp;
+});
+  </code>
+  </pre>
+      <h2>StopWatch App using react useState, useEffect hooks and setInterval,clearInterval :-</h2>
+      <pre>
+  <code>
+  import React, { useState, useEffect } from 'react';
+
+  function StopWatch() {
+  const [time, setTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+  let timerID;
+
+  useEffect(() => {
+    if (isRunning) {
+      timerID = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timerID);
+    };
+  }, [isRunning]);
+
+  const startClock = () => {
+    if (!isRunning) {
+      setIsRunning(true);
+    }
+  };
+
+  const pauseClock = () => {
+    setIsRunning(false);
+  };
+
+  const resetClock = () => {
+    clearInterval(timerID);
+    setTime(0);
+    setIsRunning(false);
+  };
+
+  return (
+    &lt;div id=&quot;banner&quot;&gt;&lt;span&gt;StopWatch&lt;/span&gt;&lt;/div&gt;
+    &lt;div id=&quot;clock&quot;&gt;{time}&lt;/div&gt;
+    &lt;button id=&quot;start&quot;&gt;Start&lt;/button&gt;
+    &lt;button id=&quot;pause&quot;&gt;Pause&lt;/button&gt;
+    &lt;button id=&quot;reset&quot;&gt;Reset&lt;/button&gt;
+  );
+  }
+  export default StopWatch;
+  </code>
+  </pre>
+  </div>
+  </body>
+</html>
