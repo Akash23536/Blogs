@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokes app</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: #fff;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        div {
+            font-size: 20px;
+            background-color: orange;
+            padding: 20px 20px;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="jokeElement">Loading...</div>
+    <button id="refreshButton">Refresh</button>
+    <script>
+        const jokeElement = document.getElementById("jokeElement");
+        const refreshButton = document.getElementById("refreshButton");
+
+        async function fetchJoke() {
+            try {
+                const response = await fetch("https://icanhazdadjoke.com/slack");
+                const jokeData = await response.json();
+                const jokeText = jokeData.attachments[0].text;
+                jokeElement.innerHTML = jokeText;
+            } catch (error) {
+                console.error("Error fetching joke:", error);
+                jokeElement.innerHTML = "Failed to fetch a joke. Please try again later.";
+            }
+        }
+
+        refreshButton.addEventListener("click", fetchJoke);
+        fetchJoke();
+    </script>
+</body>
+</html>

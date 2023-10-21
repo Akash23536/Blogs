@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="blog code in javascript and react" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jokes app</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+      img {
+        margin: 5% auto;
+      }
+
+      .center {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .center img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .paragraph {
+        padding: 20px;
+        background-color: white;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+        font-size: 16px;
+        text-align: center;
+      }
+
+      pre {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: monospace;
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-top: 20px;
+        text-align: center; /* Center align the headings */
+      }
+
+      .paragraph div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .paragraph span {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      embed {
+        margin-top: 3%;
+        margin-bottom: 3%;
+        width: 100%;
+        max-width: 800px;
+        display: block; /* Make the embed responsive */
+        margin: 0 auto; /* Center align the embed */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="center">
+      <time> October 22, 2023 | Akash Bhadana</time>
+      <h1>How to build a Jokes app using JavaScript and React.js</h1>
+      <img src="./lol.jpg" alt="js dom" height="100Px" width="150px" />
+      <img
+        src="./javascript_logo_icon.png"
+        alt="js dom"
+        height="100Px"
+        width="150px"
+      />
+      <img src="./reacth.png" alt="react hook" height="100Px" width="150px" />
+    </div>
+    <div class="paragraph">
+      <p>
+        <strong>Jokes App:</strong> The App will display random joke and a
+        Button to refresh the jokes
+      </p>
+      <embed src="./jokes-app.html" height="350Px" width="300px" />
+      <br />
+      <h2>Jokes App using Dom Manipulation and fetch api:-</h2>
+
+      <pre>
+     <code>
+// Html code:
+
+&lt;div id=&quot;jokeElement&quot;&gt;Loading...&lt;/div&gt;
+&lt;button id=&quot;refreshButton&quot;&gt;Refresh&lt;/button&gt;
+
+// JavaScript code:
+
+const jokeElement = document.getElementById("jokeElement");
+const refreshButton = document.getElementById("refreshButton");
+
+async function fetchJoke() {
+try {
+const response = await fetch("https://icanhazdadjoke.com/slack");
+const jokeData = await response.json();
+const jokeText = jokeData.attachments[0].text;
+jokeElement.innerHTML = jokeText;
+} catch (error) {
+console.error("Error fetching joke:", error);
+jokeElement.innerHTML = "Failed to fetch a joke. Please try again later.";
+}
+}
+
+refreshButton.addEventListener("click", fetchJoke);
+fetchJoke();
+  </code>
+  </pre>
+      <h2>jokes App using react useState, useEffect hooks and fetch api:-</h2>
+      <pre>
+  <code>
+  import React, { useState, useEffect } from 'react';
+  
+  function App() {
+  const [joke, setJoke] = useState('Loading...');
+
+  const fetchJoke = async () => {
+  try {
+    const response = await fetch("https://icanhazdadjoke.com/slack");
+    const jokeData = await response.json();
+    const jokeText = jokeData.attachments[0].text;
+    setJoke(jokeText);
+  } catch (error) {
+    console.error("Error fetching joke:", error);
+    setJoke("Failed to fetch a joke. Please try again later.");
+  }
+  };
+
+  useEffect(() => {
+    fetchJoke();
+  }, []);
+
+  return (
+  &lt;div&gt;
+  &lt;div id="jokeElement"&gt;{joke}&lt;/div&gt;
+  &lt;button id="refreshButton" onClick={fetchJoke}&gt;Refresh&lt;/button&gt;
+  &lt;/div&gt;
+  );
+  }
+  export default App;
+  </code>
+  </pre>
+    </div>
+  </body>
+</html>
