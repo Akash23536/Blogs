@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="blog code in javascript and react" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI app</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+      img {
+        margin: 5% auto;
+      }
+
+      .center {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .center img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .paragraph {
+        padding: 20px;
+        background-color: white;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+        font-size: 16px;
+        text-align: center;
+      }
+
+      pre {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: monospace;
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-top: 20px;
+        text-align: center; /* Center align the headings */
+      }
+
+      .paragraph div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .paragraph span {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      embed {
+        margin-top: 3%;
+        margin-bottom: 3%;
+        width: 100%;
+        max-width: 500px;
+        /* max-height: 500px; */
+        display: block; /* Make the embed responsive */
+        margin: 0 auto; /* Center align the embed */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="center">
+      <time> October 23, 2023 | Akash Bhadana</time>
+      <h1>How to build a BMI app using JavaScript and React.js</h1>
+      <img src="./Bmi.png" alt="js dom" height="250Px" width="300px" />
+      <img
+        src="./javascript_logo_icon.png"
+        alt="js dom"
+        height="100Px"
+        width="150px"
+      />
+      <img src="./reacth.png" alt="react hook" height="100Px" width="150px" />
+    </div>
+    <div class="paragraph">
+      <p>
+        <strong>BMI App:</strong> The App will display BMI of user as per the
+        height and weight and app contains two input field and a button
+        <p><strong>BMI Weight Guide</strong></p>
+        <P>Under Weight = Less than 18.6</P>
+        <P>Normal Range = 18.6 and 24.9</P>
+        <P>Over weight = Greater than 24.9</P>
+      </p>
+     
+      <embed src="./BMI app.html" height="350Px" width="300px" />
+      <br />
+      <h2>BMI App using  html form and Dom Manipulation  :-</h2>
+
+      <pre>
+     <code>
+// Html code:
+
+&lt;h2&gt;BMI Calculator&lt;/h2&gt;
+&lt;form id=&quot;bmi-form&quot;&gt;
+&lt;label for=&quot;weight&quot;&gt;Weight (in kg)&lt;/label&gt;
+&lt;input id=&quot;weight&quot; type=&quot;number&quot; placeholder=&quot;weight&quot; required /&gt;
+&lt;label for=&quot;height&quot;&gt;Height (in cm)&lt;/label&gt;
+&lt;input id=&quot;height&quot; type=&quot;number&quot; placeholder=&quot;height&quot; required /&gt;
+&lt;button type=&quot;submit&quot;&gt;Calculate&lt;/button&gt;
+&lt;/form&gt;
+&lt;h2 id=&quot;result&quot;&gt;&lt;/h2&gt;
+
+
+// JavaScript code:
+
+document.getElementById("bmi-form").addEventListener("submit", function (event) {
+event.preventDefault(); // Prevent form submission
+
+const height = Number(document.getElementById("height").value);
+const weight = Number(document.getElementById("weight").value);
+
+
+if (height > 0 && weight > 0) {  // required attribute prevent  -  !isNaN(height) && !isNaN(weight)
+const bmi = calculateBMI(height, weight);
+displayBMIResult(bmi);
+} else { result.textContent = "Please enter valid height and weight.";}
+});
+
+function calculateBMI(height, weight) {
+const heightInMeters = height / 100;
+return weight / (heightInMeters ** 2);
+}
+
+function displayBMIResult(bmi) {
+let category;
+if (bmi &lt;= 18.6) {
+  category = "Under Weight";
+  result.style.color = "#FF0000"; // red
+} else if (bmi &lt;= 24.9) {
+  category = "Normal Weight";
+  result.style.color = "#00FF00"; // green
+} else {
+  category = "Over Weight";
+  result.style.color = "#FFA500"; //orange
+}
+result.textContent = `${category} BMI: ${bmi.toFixed(2)}`;
+}
+  </code>
+  </pre>
+      <h2>BMI App using react forms and useState hook :-</h2>
+      <pre>
+  <code>
+  import React, { useState } from 'react';
+
+  function BMICalculator() {
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+  const [result, setResult] = useState('');
+
+  const handleWeightChange = (e) => {
+    setWeight(e.target.value);
+  };
+
+  const calculateBMI = () => {
+  e.preventDefault(); // Prevent the default form submission
+  const weightValue = parseFloat(weight);
+  const heightValue = parseFloat(height);
+
+  if (weightValue > 0 && heightValue > 0) {
+    const heightInMeters = heightValue / 100;
+    const bmi = (weightValue / (heightInMeters * heightInMeters)).toFixed(2);
+    displayBMIResult(bmi);
+  } else {
+    setResult('Please enter valid height and weight.');
+  }
+  };
+
+  const displayBMIResult = (bmi) => {
+  let category;
+  if (bmi &lt;= 18.6) {
+    category = 'Under Weight';
+  } else if (bmi &lt;= 24.9) {
+    category = 'Normal Weight';
+  } else {
+    category = 'Over Weight';
+  }
+  setResult(`${category} BMI: ${bmi}`);
+  };
+
+  return (
+  &lt;h2&gt;BMI Calculator&lt;/h2&gt;
+  &lt;form onSubmit={calculateBMI} id=&quot;bmi-form&quot;&gt;
+  &lt;label htmlFor=&quot;weight&quot;&gt;Weight (in kg)&lt;/label&gt;
+  &lt;input id=&quot;weight&quot; type=&quot;number&quot; placeholder=&quot;weight&quot; value={weight}
+  onChange={handleWeightChange} required /&gt;
+  &lt;label htmlFor=&quot;height&quot;&gt;Height (in cm)&lt;/label&gt;
+  &lt;input id=&quot;height&quot; type=&quot;number&quot; placeholder=&quot;height&quot; value={height}
+  onChange={(e)=>{ setHeight(e.target.value); }} required /&gt;
+  &lt;button type=&quot;submit&quot;&gt;Calculate&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;h2 id=&quot;result&quot;&gt;{result}&lt;/h2&gt;
+  );
+  }
+  export default App;
+  </code>
+  </pre>
+    </div>
+  </body>
+</html>

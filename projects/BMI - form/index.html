@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator</title>
+    <style>
+      body {
+        background-color: #212121;
+        color: #fff;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+      input,
+      button {
+        margin: 10px;
+        padding: 10px;
+      }
+      #result {
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>BMI Weight Guide</h3>
+    <p>Under Weight = Less than 18.6</p>
+    <p>Normal Range = 18.6 and 24.9</p>
+    <p>Over weight = Greater than 24.9</p>
+    <br /><br />
+
+    <h1>BMI Calculator</h1>
+    <form id="bmi-form">
+      <label for="weight">Weight (in kg)</label>
+      <input id="weight" type="number" placeholder="weight" required />
+      <br />
+      <label for="height">Height (in cm)</label>
+      <input id="height" type="number" placeholder="height" required />
+      <br />
+      <button type="submit">Calculate</button>
+    </form>
+    <div>
+      <h2 id="result"></h2>
+    </div>
+    <script>
+      document
+        .getElementById("bmi-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+
+          const height = Number(document.getElementById("height").value);
+          const weight = Number(document.getElementById("weight").value);
+
+          if (height > 0 && weight > 0) {
+            // !isNaN(height) && !isNaN(weight)
+            const bmi = calculateBMI(height, weight);
+            displayBMIResult(bmi);
+          } else {
+            result.textContent = "Please enter valid height and weight.";
+          }
+        });
+
+      function calculateBMI(height, weight) {
+        const heightInMeters = height / 100;
+        return weight / (heightInMeters * heightInMeters);
+      }
+
+      function displayBMIResult(bmi) {
+        let category;
+        if (bmi <= 18.6) {
+          category = "Under Weight";
+          result.style.color = "#FF0000"; // red
+        } else if (bmi <= 24.9) {
+          category = "Normal Weight";
+          result.style.color = "#00FF00"; // green
+        } else {
+          category = "Over Weight";
+          result.style.color = "#FFA500"; //orange
+        }
+        result.textContent = `${category} BMI: ${bmi.toFixed(2)}`;
+      }
+    </script>
+  </body>
+</html>
